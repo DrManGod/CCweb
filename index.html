@@ -248,12 +248,21 @@
         .team-member h3 {
             color: var(--cc-green);
             font-size: 14px;
-            margin-bottom: 10px;
+            margin-bottom: 2px;
         }
         
         .team-member p {
             font-size: 10px;
             color: var(--light-text);
+            margin: 0;
+        }
+        
+        .team-member p:first-of-type {
+            margin-bottom: 8px;
+        }
+        
+        .team-member p:last-of-type {
+            color: #888;
         }
         
         /* Pixel face in corner */
@@ -556,62 +565,60 @@
         
         .king-crown {
             width: 44px;
-            height: 24px;
+            height: 20px;
             background: #FFD700;
             border: 2px solid #000;
-            border-bottom: 2px solid #000;
+            border-bottom: none;
             position: relative;
             margin-bottom: 0;
             display: flex;
+            justify-content: space-between;
         }
         
-        /* Crown notches viewed from side - creates the castle/crenellation effect */
+        /* Four rectangular peaks like castle battlements */
         .crown-notch {
-            position: absolute;
-            top: 0;
             width: 8px;
-            height: 12px;
+            height: 10px;
             background: #FFD700;
-            border-left: 2px solid #000;
-            border-right: 2px solid #000;
-            border-top: 2px solid #000;
+            border: 2px solid #000;
+            border-bottom: none;
+            position: relative;
         }
         
+        /* First peak */
         .crown-notch:nth-child(1) {
-            left: 2px;
+            margin-left: 1px;
         }
         
+        /* Second peak */
         .crown-notch:nth-child(2) {
-            left: 14px;
         }
         
+        /* Third peak */
         .crown-notch:nth-child(3) {
-            left: 26px;
         }
         
-        /* Gaps between notches (darker to show depth) */
+        /* Fourth peak */
+        .crown-notch:nth-child(4) {
+            margin-right: 1px;
+        }
+        
+        /* Base band of crown */
         .king-crown::before {
             content: "";
             position: absolute;
-            top: 0;
-            left: 10px;
-            width: 4px;
-            height: 12px;
-            background: #B8860B;
-            border-left: 1px solid #000;
-            border-right: 1px solid #000;
+            bottom: 0;
+            left: -2px;
+            right: -2px;
+            height: 6px;
+            background: #FFD700;
+            border-left: 2px solid #000;
+            border-right: 2px solid #000;
         }
         
+        /* Remove the ::after element */
         .king-crown::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            right: 10px;
-            width: 4px;
-            height: 12px;
-            background: #B8860B;
-            border-left: 1px solid #000;
-            border-right: 1px solid #000;
+            display: none;
         }
         
         .king-body {
@@ -957,6 +964,7 @@
                         <div class="crown-notch"></div>
                         <div class="crown-notch"></div>
                         <div class="crown-notch"></div>
+                        <div class="crown-notch"></div>
                     </div>
                     <div class="king-body"></div>
                 </div>
@@ -981,7 +989,7 @@
                     </div>
                     <h3>MARTIN SEGERLUND</h3>
                     <p>"MR.WOBBLEBOTTOM"</p>
-                    <p>Total: 8.6</p>
+                    <p>TEAM ANCHOR</p>
                 </div>
                 
                 <!-- Player 2: Dark blonde hair -->
@@ -998,7 +1006,7 @@
                     </div>
                     <h3>MANNE GODHE</h3>
                     <p>"MANU"</p>
-                    <p>Total: 8.3</p>
+                    <p>ALLROUND PLAYER</p>
                 </div>
                 
                 <!-- Player 3: Yellow hair with blue eyes -->
@@ -1015,7 +1023,7 @@
                     </div>
                     <h3>PATRIK JANGEMO</h3>
                     <p>"JUNGUNS"</p>
-                    <p>Total: 8.0</p>
+                    <p>POWER THROWER</p>
                 </div>
                 
                 <!-- Player 4: Red hair and red beard with blue eyes -->
@@ -1032,7 +1040,7 @@
                     </div>
                     <h3>JOHAN JOHANSSON</h3>
                     <p>"JJ"</p>
-                    <p>Total: 8.4</p>
+                    <p>ALLROUND PLAYER</p>
                 </div>
                 
                 <!-- Player 5: Woman with more blonde hair and blue eyes -->
@@ -1049,7 +1057,7 @@
                     </div>
                     <h3>ELLINOR HAMMAR</h3>
                     <p>"SHOCKER"</p>
-                    <p>Total: 9.0</p>
+                    <p>PRECISION THROWER</p>
                 </div>
                 
                 <!-- Player 6: Black short hair, light brown skin -->
@@ -1066,15 +1074,15 @@
                     </div>
                     <h3>FLAVIO SJÖSTRÖM</h3>
                     <p>"FLAVVE"</p>
-                    <p>Total: 8.0</p>
+                    <p>SNIPER</p>
                 </div>
                 
-                <!-- Player 7: Bald with lighter beard, no mouth -->
+                <!-- Player 7: Completely bald with lighter beard, no mouth -->
                 <div class="team-member" onclick="showPlayerCard(7)">
                     <div class="pixel-face">
                         <div class="face-pixel"></div><div class="face-pixel"></div><div class="face-pixel"></div><div class="face-pixel"></div><div class="face-pixel"></div><div class="face-pixel"></div><div class="face-pixel"></div><div class="face-pixel"></div>
-                        <div class="face-pixel"></div><div class="face-pixel face-hair-black"></div><div class="face-pixel face-hair-black"></div><div class="face-pixel face-hair-black"></div><div class="face-pixel face-hair-black"></div><div class="face-pixel face-hair-black"></div><div class="face-pixel face-hair-black"></div><div class="face-pixel"></div>
-                        <div class="face-pixel"></div><div class="face-pixel face-hair-black"></div><div class="face-pixel face-skin"></div><div class="face-pixel face-skin"></div><div class="face-pixel face-skin"></div><div class="face-pixel face-skin"></div><div class="face-pixel face-hair-black"></div><div class="face-pixel"></div>
+                        <div class="face-pixel"></div><div class="face-pixel"></div><div class="face-pixel"></div><div class="face-pixel"></div><div class="face-pixel"></div><div class="face-pixel"></div><div class="face-pixel"></div><div class="face-pixel"></div>
+                        <div class="face-pixel"></div><div class="face-pixel"></div><div class="face-pixel face-skin"></div><div class="face-pixel face-skin"></div><div class="face-pixel face-skin"></div><div class="face-pixel face-skin"></div><div class="face-pixel"></div><div class="face-pixel"></div>
                         <div class="face-pixel"></div><div class="face-pixel"></div><div class="face-pixel face-skin"></div><div class="face-pixel face-eye"></div><div class="face-pixel face-skin"></div><div class="face-pixel face-eye"></div><div class="face-pixel face-skin"></div><div class="face-pixel"></div>
                         <div class="face-pixel"></div><div class="face-pixel"></div><div class="face-pixel face-skin"></div><div class="face-pixel face-skin"></div><div class="face-pixel face-skin"></div><div class="face-pixel face-skin"></div><div class="face-pixel face-skin"></div><div class="face-pixel"></div>
                         <div class="face-pixel"></div><div class="face-pixel"></div><div class="face-pixel face-skin"></div><div class="face-pixel face-skin"></div><div class="face-pixel face-skin"></div><div class="face-pixel face-skin"></div><div class="face-pixel face-skin"></div><div class="face-pixel"></div>
@@ -1083,7 +1091,7 @@
                     </div>
                     <h3>SAMY DALMAN</h3>
                     <p>"PRESS"</p>
-                    <p>Total: 8.1</p>
+                    <p>ALLROUND PLAYER</p>
                 </div>
                 
                 <!-- Player 8: White/silver grey short hair -->
@@ -1100,7 +1108,7 @@
                     </div>
                     <h3>PETER NORDLUND</h3>
                     <p>"PRAY TO ODEN"</p>
-                    <p>Total: 8.6</p>
+                    <p>CLUTCH CLOSER</p>
                 </div>
             </div>
         </section>
@@ -1113,6 +1121,7 @@
                 <h2 id="cardName">PLAYER NAME</h2>
                 <p id="cardRole">Role</p>
                 <div class="player-stats">
+                    <p id="cardTotal">Total score: --</p>
                     <p id="cardPower">Shot Power: --</p>
                     <p id="cardAcc_under5">Accuracy <5m: --</p>
                     <p id="cardAcc5_7">Accuracy 5-7m: --</p>
@@ -1191,15 +1200,15 @@
         
         <!-- Contact Section -->
         <section id="contact">
-            <h2>JOIN THE BATTLE</h2>
+            <h2>CONTACT</h2>
             <p>
                 Ready to challenge the champions? Want to join our legendary squad? 
                 Send us a message and prove your worth on the battlefield!
             </p>
             <p style="margin-top: 20px;">
                 EMAIL: team@cckubb.com<br>
-                PHONE: 1-800-KUBB-WIN<br>
-                LOCATION: THE PIXEL ARENA
+                INSTAGRAM: <br>
+                HOME ARENA: Svandammsparken
             </p>
             <p style="margin-top: 30px; text-align: center; color: var(--cc-green);">
                 ▶ PRESS START TO BEGIN<span class="blink">_</span>
@@ -1208,6 +1217,9 @@
         
         <!-- Footer -->
         <footer>
+            <p style="margin-bottom: 15px; font-size: 12px; color: var(--cc-green);">
+                DESIGNED BY DR.MANGOD
+            </p>
             <p>
                 © 2008-2026 CC KUBB TEAM | EST. 2008
             </p>
@@ -1223,115 +1235,115 @@
             const playerData = {
                 1: { 
                     name: "MARTIN 'MR.WOBBLEBOTTOM' SEGERLUND", 
-                    role: "THROWER", 
-                    kubbs10: 8.5,
-                    power: 9,
-                    acc_under5: 9.2,
-                    acc5_7: 8.5,
-                    acc_over7: 7.8,
-                    throwin: 8.8,
-                    wc_1v1: "5th",
-                    ec_1v1: "3rd",
-                    team_wc: "Quarter-finals",
-                    team_ec: "Semi-finals"
+                    role: "TEAM ANCHOR", 
+                    kubbs10: 8.0,
+                    power: 8.5,
+                    acc_under5: 8.0,
+                    acc5_7: 8.0,
+                    acc_over7: 7.5,
+                    throwin: 8.0,
+                    wc_1v1: "6th",
+                    ec_1v1: "16th",
+                    team_wc: "Round of 16",
+                    team_ec: "Round of 32"
                 },
                 2: { 
                     name: "MANNE 'MANU' GODHE", 
-                    role: "STRATEGIST / THROWER", 
-                    kubbs10: 7.8,
-                    power: 7,
-                    acc_under5: 9.4,
-                    acc5_7: 8.8,
-                    acc_over7: 7.5,
-                    throwin: 9.1,
-                    wc_1v1: "8th",
-                    ec_1v1: "5th",
+                    role: "ALLROUND PLAYER", 
+                    kubbs10: 7.2,
+                    power: 9.0,
+                    acc_under5: 6.5,
+                    acc5_7: 7.0,
+                    acc_over7: 6.5,
+                    throwin: 7.0,
+                    wc_1v1: "120th",
+                    ec_1v1: "150th",
                     team_wc: "Round of 16",
-                    team_ec: "Quarter-finals"
+                    team_ec: "Round of 32"
                 },
                 3: { 
                     name: "PATRIK 'JUNGUNS' JANGEMO", 
-                    role: "DEFENDER / BASELINE", 
-                    kubbs10: 7.2,
-                    power: 8,
-                    acc_under5: 8.9,
-                    acc5_7: 8.2,
-                    acc_over7: 7.1,
-                    throwin: 8.5,
-                    wc_1v1: "12th",
-                    ec_1v1: "9th",
-                    team_wc: "Group stage",
-                    team_ec: "Round of 16"
+                    role: "POWER THROWER", 
+                    kubbs10: 7.0,
+                    power: 9.0,
+                    acc_under5: 6.5,
+                    acc5_7: 7.0,
+                    acc_over7: 6.0,
+                    throwin: 6.5,
+                    wc_1v1: "145th",
+                    ec_1v1: "175th",
+                    team_wc: "Round of 16",
+                    team_ec: "NA"
                 },
                 4: { 
                     name: "JOHAN 'JJ' JOHANSSON", 
-                    role: "SCOUT / MID-FIELD", 
-                    kubbs10: 8.1,
-                    power: 6,
-                    acc_under5: 9.6,
-                    acc5_7: 9.0,
-                    acc_over7: 8.1,
-                    throwin: 9.3,
-                    wc_1v1: "3rd",
-                    ec_1v1: "2nd",
-                    team_wc: "Semi-finals",
-                    team_ec: "Finals (Silver)"
+                    role: "ALLROUND PLAYER", 
+                    kubbs10: 6.5,
+                    power: 6.5,
+                    acc_under5: 7.0,
+                    acc5_7: 6.5,
+                    acc_over7: 6.0,
+                    throwin: 6.5,
+                    wc_1v1: "110th",
+                    ec_1v1: "130th",
+                    team_wc: "Round of 16",
+                    team_ec: "NA"
                 },
                 5: { 
                     name: "ELLINOR 'SHOCKER' HAMMAR", 
                     role: "PRECISION THROWER", 
-                    kubbs10: 8.9,
-                    power: 8,
-                    acc_under5: 9.7,
-                    acc5_7: 9.2,
-                    acc_over7: 8.4,
-                    throwin: 9.5,
-                    wc_1v1: "1st",
-                    ec_1v1: "1st",
-                    team_wc: "Finals (Gold)",
-                    team_ec: "Finals (Gold)"
+                    kubbs10: 6.5,
+                    power: 5.5,
+                    acc_under5: 8.5,
+                    acc5_7: 6.0,
+                    acc_over7: 6.0,
+                    throwin: 6.5,
+                    wc_1v1: "165th",
+                    ec_1v1: "190th",
+                    team_wc: "NA",
+                    team_ec: "NA"
                 },
                 6: { 
                     name: "FLAVIO 'FLAVVE' SJÖSTRÖM", 
-                    role: "TACTICIAN / ANALYZER", 
-                    kubbs10: 7.6,
-                    power: 7,
-                    acc_under5: 9.1,
-                    acc5_7: 8.4,
-                    acc_over7: 7.3,
-                    throwin: 8.7,
-                    wc_1v1: "10th",
-                    ec_1v1: "7th",
+                    role: "SNIPER", 
+                    kubbs10: 6.0,
+                    power: 5.0,
+                    acc_under5: 8.0,
+                    acc5_7: 5.5,
+                    acc_over7: 5.5,
+                    throwin: 6.0,
+                    wc_1v1: "155th",
+                    ec_1v1: "180th",
                     team_wc: "Round of 16",
-                    team_ec: "Quarter-finals"
+                    team_ec: "NA"
                 },
                 7: { 
                     name: "SAMY 'PRESS' DALMAN", 
-                    role: "POWER THROWER", 
-                    kubbs10: 6.9,
-                    power: 10,
-                    acc_under5: 8.7,
-                    acc5_7: 7.9,
-                    acc_over7: 6.8,
-                    throwin: 8.2,
-                    wc_1v1: "15th",
-                    ec_1v1: "12th",
-                    team_wc: "Group stage",
-                    team_ec: "Group stage"
+                    role: "ALLROUND PLAYER", 
+                    kubbs10: 6.0,
+                    power: 8.0,
+                    acc_under5: 5.5,
+                    acc5_7: 5.5,
+                    acc_over7: 5.0,
+                    throwin: 6.0,
+                    wc_1v1: "135th",
+                    ec_1v1: "NA",
+                    team_wc: "Round of 16",
+                    team_ec: "NA"
                 },
                 8: { 
                     name: "PETER 'PRAY TO ODEN' NORDLUND", 
                     role: "CLUTCH CLOSER", 
-                    kubbs10: 8.7,
-                    power: 7,
-                    acc_under5: 9.5,
-                    acc5_7: 8.9,
-                    acc_over7: 8.0,
-                    throwin: 9.4,
-                    wc_1v1: "6th",
-                    ec_1v1: "4th",
-                    team_wc: "Quarter-finals",
-                    team_ec: "Semi-finals"
+                    kubbs10: 5.5,
+                    power: 5.5,
+                    acc_under5: 6.0,
+                    acc5_7: 5.5,
+                    acc_over7: 5.0,
+                    throwin: 5.5,
+                    wc_1v1: "170th",
+                    ec_1v1: "195th",
+                    team_wc: "Round of 16",
+                    team_ec: "NA"
                 }
             };
             
@@ -1368,6 +1380,7 @@
             document.getElementById('cardEC1v1').textContent = 'EC 1v1: ' + player.ec_1v1;
             document.getElementById('cardTeamWC').textContent = 'Team WC: ' + player.team_wc;
             document.getElementById('cardTeamEC').textContent = 'Team EC: ' + player.team_ec;
+            document.getElementById('cardTotal').textContent = 'Total score: ' + player.kubbs10;
             
             // Generate pixel face for card (same as preview)
             const faceHTMLs = {
@@ -1420,8 +1433,8 @@
                     <div class="face-pixel"></div><div class="face-pixel"></div><div class="face-pixel face-skin-brown"></div><div class="face-pixel face-skin-brown"></div><div class="face-pixel face-skin-brown"></div><div class="face-pixel face-skin-brown"></div><div class="face-pixel"></div><div class="face-pixel"></div>
                     <div class="face-pixel"></div><div class="face-pixel"></div><div class="face-pixel"></div><div class="face-pixel"></div><div class="face-pixel"></div><div class="face-pixel"></div><div class="face-pixel"></div><div class="face-pixel"></div>`,
                 7: `<div class="face-pixel"></div><div class="face-pixel"></div><div class="face-pixel"></div><div class="face-pixel"></div><div class="face-pixel"></div><div class="face-pixel"></div><div class="face-pixel"></div><div class="face-pixel"></div>
-                    <div class="face-pixel"></div><div class="face-pixel face-hair-black"></div><div class="face-pixel face-hair-black"></div><div class="face-pixel face-hair-black"></div><div class="face-pixel face-hair-black"></div><div class="face-pixel face-hair-black"></div><div class="face-pixel face-hair-black"></div><div class="face-pixel"></div>
-                    <div class="face-pixel"></div><div class="face-pixel face-hair-black"></div><div class="face-pixel face-skin"></div><div class="face-pixel face-skin"></div><div class="face-pixel face-skin"></div><div class="face-pixel face-skin"></div><div class="face-pixel face-hair-black"></div><div class="face-pixel"></div>
+                    <div class="face-pixel"></div><div class="face-pixel"></div><div class="face-pixel"></div><div class="face-pixel"></div><div class="face-pixel"></div><div class="face-pixel"></div><div class="face-pixel"></div><div class="face-pixel"></div>
+                    <div class="face-pixel"></div><div class="face-pixel"></div><div class="face-pixel face-skin"></div><div class="face-pixel face-skin"></div><div class="face-pixel face-skin"></div><div class="face-pixel face-skin"></div><div class="face-pixel"></div><div class="face-pixel"></div>
                     <div class="face-pixel"></div><div class="face-pixel"></div><div class="face-pixel face-skin"></div><div class="face-pixel face-eye"></div><div class="face-pixel face-skin"></div><div class="face-pixel face-eye"></div><div class="face-pixel face-skin"></div><div class="face-pixel"></div>
                     <div class="face-pixel"></div><div class="face-pixel"></div><div class="face-pixel face-skin"></div><div class="face-pixel face-skin"></div><div class="face-pixel face-skin"></div><div class="face-pixel face-skin"></div><div class="face-pixel face-skin"></div><div class="face-pixel"></div>
                     <div class="face-pixel"></div><div class="face-pixel"></div><div class="face-pixel face-skin"></div><div class="face-pixel face-skin"></div><div class="face-pixel face-skin"></div><div class="face-pixel face-skin"></div><div class="face-pixel face-skin"></div><div class="face-pixel"></div>
