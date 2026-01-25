@@ -773,6 +773,183 @@
                 height: 300px;
             }
         }
+                /* Highscore link text */
+        .highscore-link {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .highscore-link p {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 14px;
+            color: var(--cc-green);
+            text-shadow: 2px 2px 0px var(--cc-purple);
+            animation: blink-cursor 1s step-end infinite;
+        }
+
+        .highscore-link:hover p {
+            color: var(--accent-purple);
+            transform: scale(1.1);
+            text-shadow: 2px 2px 0px var(--cc-green);
+        }
+
+        /* Highscore Modal */
+        .highscore-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 10, 26, 0.95);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .highscore-modal.active {
+            display: flex;
+        }
+
+        .highscore-content {
+            background: #000000;
+            border: 8px solid var(--cc-purple);
+            padding: 40px;
+            max-width: 700px;
+            width: 90%;
+            position: relative;
+            animation: slideUp 0.4s ease-out;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 0 30px rgba(139, 76, 158, 0.5);
+        }
+
+        .highscore-content h2 {
+            font-family: 'Press Start 2P', cursive;
+            color: var(--cc-green);
+            font-size: 24px;
+            margin-bottom: 30px;
+            text-align: center;
+            text-shadow: 2px 2px 0px var(--cc-purple);
+        }
+
+        .highscore-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .highscore-tab {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 9px;
+            padding: 15px 20px;
+            background: #000000;
+            color: var(--cc-purple);
+            border: 4px solid var(--cc-purple);
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 4px 4px 0px var(--cc-purple);
+        }
+
+        .highscore-tab:hover {
+            background: var(--cc-purple);
+            color: var(--cc-green);
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px var(--cc-green);
+        }
+
+        .highscore-tab:active {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px var(--cc-purple);
+        }
+
+        .highscore-tab.active {
+            background: var(--cc-purple);
+            color: var(--cc-green);
+            border-color: var(--cc-green);
+            box-shadow: 4px 4px 0px var(--cc-green);
+        }
+
+        .highscore-tab-content {
+            display: none;
+        }
+
+        .highscore-tab-content.active {
+            display: block;
+        }
+
+        .highscore-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .highscore-item {
+            background: var(--darker-bg);
+            border: 4px solid var(--cc-green);
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s;
+            box-shadow: 0 0 10px rgba(68, 204, 68, 0.2);
+        }
+
+        .highscore-item:hover {
+            border-color: var(--accent-purple);
+            transform: translateX(5px);
+            box-shadow: 0 0 20px rgba(119, 68, 255, 0.4);
+        }
+
+        .highscore-rank {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 24px;
+            color: var(--cc-green);
+            min-width: 50px;
+            text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.5);
+        }
+
+        .highscore-name {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 11px;
+            color: var(--cc-green);
+            flex-grow: 1;
+            text-align: left;
+            margin-left: 20px;
+        }
+
+        .highscore-score {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 18px;
+            color: var(--cc-green);
+            font-weight: bold;
+            text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Medal colors for top 3 */
+        .highscore-item:nth-child(1) .highscore-rank {
+            color: #FFD700;
+            animation: shimmer 2s infinite;
+        }
+
+        .highscore-item:nth-child(2) .highscore-rank {
+            color: #C0C0C0;
+        }
+
+        .highscore-item:nth-child(3) .highscore-rank {
+            color: #CD7F32;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.3); }
+        }
     </style>
 </head>
 <body>
@@ -969,7 +1146,13 @@
                     <div class="king-body"></div>
                 </div>
             </div>
+            
+            <div class="highscore-link" onclick="showHighscores()">
+                <p>▶ HIGHSCORES ◀</p>
+            </div>
+            
         </section>
+
         
         <!-- Team Section -->
         <section id="team">
@@ -1131,6 +1314,70 @@
                     <p id="cardEC1v1">EC 1v1: --</p>
                     <p id="cardTeamWC">Team WC: --</p>
                     <p id="cardTeamEC">Team EC: --</p>
+                </div>
+            </div>
+        </div>
+         <!-- Highscore Modal -->
+        <div class="highscore-modal" id="highscoreModal">
+            <div class="highscore-content">
+                <div class="close-card" onclick="closeHighscores()">X</div>
+                <h2>🏆 HIGHSCORES 🏆</h2>
+                
+                <div class="highscore-tabs">
+                    <button class="highscore-tab" onclick="switchHighscoreTab('kings')">THE KINGS KIN THROW</button>
+                    <button class="highscore-tab active" onclick="switchHighscoreTab('cross')">THE CROSS</button>
+                </div>
+                
+                <!-- The Kings Kin Throw Tab -->
+                <div class="highscore-tab-content" id="highscore-kings">
+                    <ul class="highscore-list">
+                        <li class="highscore-item">
+                            <span class="highscore-rank">1</span>
+                            <span class="highscore-name">Coming Soon...</span>
+                            <span class="highscore-score">--</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- The Cross Tab -->
+                <div class="highscore-tab-content active" id="highscore-cross">
+                    <ul class="highscore-list">
+                        <li class="highscore-item">
+                            <span class="highscore-rank">1</span>
+                            <span class="highscore-name">MARTIN SEGERLUND</span>
+                            <span class="highscore-score">23</span>
+                        </li>
+                        <li class="highscore-item">
+                            <span class="highscore-rank">2</span>
+                            <span class="highscore-name">MARTIN SEGERLUND</span>
+                            <span class="highscore-score">19</span>
+                        </li>
+                        <li class="highscore-item">
+                            <span class="highscore-rank">3</span>
+                            <span class="highscore-name">MANNE GODHE</span>
+                            <span class="highscore-score">18</span>
+                        </li>
+                        <li class="highscore-item">
+                            <span class="highscore-rank">4</span>
+                            <span class="highscore-name">PATRIK JANGEMO</span>
+                            <span class="highscore-score">16</span>
+                        </li>
+                        <li class="highscore-item">
+                            <span class="highscore-rank">5</span>
+                            <span class="highscore-name">MANNE GODHE</span>
+                            <span class="highscore-score">15</span>
+                        </li>
+                        <li class="highscore-item">
+                            <span class="highscore-rank">6</span>
+                            <span class="highscore-name">JOHAN JOHANSSON</span>
+                            <span class="highscore-score">13</span>
+                        </li>
+                        <li class="highscore-item">
+                            <span class="highscore-rank">7</span>
+                            <span class="highscore-name">FLAVIO SJÖSTRÖM</span>
+                            <span class="highscore-score">11</span>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -1529,6 +1776,38 @@
             sections.forEach(section => {
                 observer.observe(section);
             });
+        });
+         // Highscore Functions
+        window.showHighscores = function() {
+            document.getElementById('highscoreModal').classList.add('active');
+        };
+
+        window.closeHighscores = function() {
+            document.getElementById('highscoreModal').classList.remove('active');
+        };
+
+        window.switchHighscoreTab = function(tab) {
+            const tabs = document.querySelectorAll('.highscore-tab');
+            const contents = document.querySelectorAll('.highscore-tab-content');
+            
+            tabs.forEach(t => t.classList.remove('active'));
+            contents.forEach(c => c.classList.remove('active'));
+            
+            if (tab === 'kings') {
+                tabs[0].classList.add('active');
+                document.getElementById('highscore-kings').classList.add('active');
+            } else if (tab === 'cross') {
+                tabs[1].classList.add('active');
+                document.getElementById('highscore-cross').classList.add('active');
+            }
+        };
+
+        // Close modal when clicking outside
+        document.addEventListener('click', function(e) {
+            const modal = document.getElementById('highscoreModal');
+            if (e.target === modal) {
+                closeHighscores();
+            }
         });
     </script>
 </body>
