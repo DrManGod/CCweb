@@ -950,8 +950,65 @@
             0%, 100% { filter: brightness(1); }
             50% { filter: brightness(1.3); }
         }
+   /* Language Switcher - NES Style */
+.lang-switcher {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 2000;
+    display: flex;
+    gap: 5px;
+}
+
+.lang-btn {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 8px;
+    padding: 10px 15px;
+    background: var(--darker-bg);
+    color: var(--light-text);
+    border: 3px solid var(--cc-purple);
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 3px 3px 0px var(--cc-purple);
+}
+
+.lang-btn:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 5px 0px var(--cc-green);
+    border-color: var(--cc-green);
+}
+
+.lang-btn.active {
+    background: var(--cc-purple);
+    color: var(--cc-green);
+    border-color: var(--cc-green);
+    box-shadow: 3px 3px 0px var(--cc-green);
+}
+
+.lang-btn:active {
+    transform: translate(1px, 1px);
+    box-shadow: 2px 2px 0px var(--cc-purple);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .lang-switcher {
+        top: 10px;
+        right: 10px;
+    }
+    
+    .lang-btn {
+        font-size: 7px;
+        padding: 8px 12px;
+    }
+}
     </style>
 </head>
+<!-- Language Switcher -->
+<div class="lang-switcher">
+    <button class="lang-btn active" onclick="switchLanguage('en')" id="lang-en">EN</button>
+    <button class="lang-btn" onclick="switchLanguage('sv')" id="lang-sv">SV</button>
+</div>
 <body>
     <div class="stars" id="stars"></div>
     
@@ -1811,6 +1868,234 @@
                 closeHighscores();
             }
         });
+        // Language Switcher
+let currentLang = 'en';
+
+const translations = {
+    en: {
+        // Header
+        tagline: "CHAMPAIGN COUNTY",
+        
+        // Marquee
+        marquee: "▶ CHAMPIONS OF NORRTÄLJE TOURNAMENT 3 JAN 2026 ◀",
+        
+        // Navigation
+        nav_about: "ABOUT",
+        nav_team: "TEAM",
+        nav_stats: "STATS",
+        nav_contact: "CONTACT",
+        
+        // About
+        about_title: "ABOUT US",
+        about_p1: "Welcome to CC KUBB TEAM, established 2008 Based in Stockholm, Sweden! We are a dedicated group of players who love the game of kubb. We've been out competing at the World and European Championships. Our recent win at the Norrtälje Cup (January 2026) and #10 national ranking reflect our recent progression in the sport.",
+        about_p2: "For us, kubb is a passion we share as a team. We see every match as a chance to improve and enjoy competing together.",
+        
+        // Team
+        team_title: "KUBB TEAM MEMBERS",
+        highscores: "▶ HIGHSCORES ◀",
+        
+        // Player roles
+        role_anchor: "TEAM ANCHOR",
+        role_allround: "ALLROUND PLAYER",
+        role_power: "POWER THROWER",
+        role_precision: "PRECISION THROWER",
+        role_sniper: "SNIPER",
+        role_clutch: "CLUTCH CLOSER",
+        
+        // Stats
+        stats_title: "SEASON RESULTS",
+        tournament_results: "🏆 TOURNAMENT RESULTS 🏆",
+        wc_6v6: "WC 6vs6: ROUND OF 16",
+        ec_3v3: "EC 3vs3: ROUND OF 32",
+        winner_norrtalje: "WINNER OF NORRTÄLJE CUP",
+        upcoming: "UPCOMING",
+        games_won: "GAMES WON",
+        win_streak: "WIN STREAK",
+        kubbs_toppled: "KUBBS TOPPLED",
+        kings_conquered: "KINGS CONQUERED",
+        ranked_nationally: "▶ RANKED #10 NATIONALLY ◀",
+        season_progress: "▶ SEASON IN PROGRESS ◀",
+        
+        // Contact
+        contact_title: "CONTACT",
+        contact_p1: "Ready to challenge the champions? Want to join our squad? Send us a message and prove your worth on the kubbfield!",
+        email: "EMAIL",
+        instagram: "INSTAGRAM",
+        home_arena: "HOME ARENA",
+        press_start: "▶ PRESS START TO BEGIN",
+        
+        // Footer
+        designed_by: "DESIGNED BY DR.MANGOD",
+        copyright: "© 2008-2026 CC KUBB TEAM | EST. 2008",
+        best_viewed: "BEST VIEWED IN NETSCAPE NAVIGATOR 4.0 | 800x600 RESOLUTION",
+        
+        // Player stats
+        shot_power: "Shot Power",
+        accuracy_under5: "Accuracy <5m",
+        accuracy_5_7: "Accuracy 5-7m",
+        accuracy_over7: "Accuracy >7m",
+        throw_in: "Throw In",
+        total_score: "Total score"
+    },
+    sv: {
+        // Header
+        tagline: "CHAMPAIGN COUNTY",
+        
+        // Marquee
+        marquee: "▶ MÄSTARE I NORRTÄLJETURNERINGEN 3 JAN 2026 ◀",
+        
+        // Navigation
+        nav_about: "OM OSS",
+        nav_team: "LAG",
+        nav_stats: "STATISTIK",
+        nav_contact: "KONTAKT",
+        
+        // About
+        about_title: "OM OSS",
+        about_p1: "Välkommen till CC KUBB TEAM, etablerat 2008 i Stockholm, Sverige! Vi är en dedikerad grupp spelare som älskar kubbspelet. Vi har tävlat i VM och EM. Vår senaste vinst i Norrtäljepokalen (januari 2026) och #10 nationell ranking speglar vår senaste progression i sporten.",
+        about_p2: "För oss är kubb en passion vi delar som ett lag. Vi ser varje match som en chans att förbättra oss och njuta av att tävla tillsammans.",
+        
+        // Team
+        team_title: "KUBBLAGETS MEDLEMMAR",
+        highscores: "▶ TOPPLISTA ◀",
+        
+        // Player roles
+        role_anchor: "LAGETS ANKARE",
+        role_allround: "ALLROUNDSPELARE",
+        role_power: "KRAFTKASTARE",
+        role_precision: "PRECISIONSKASTARE",
+        role_sniper: "PRICKSKYTT",
+        role_clutch: "CLUTCHSPELARE",
+        
+        // Stats
+        stats_title: "SÄSONGSRESULTAT",
+        tournament_results: "🏆 TURNERINGSRESULTAT 🏆",
+        wc_6v6: "VM 6vs6: ÅTTONDELSFINAL",
+        ec_3v3: "EM 3vs3: SEXTONDELSFINAL",
+        winner_norrtalje: "VINNARE AV NORRTÄLJEPOKALEN",
+        upcoming: "KOMMANDE",
+        games_won: "VUNNA MATCHER",
+        win_streak: "VINSTSVIT",
+        kubbs_toppled: "FÄLLDA KUBBAR",
+        kings_conquered: "ERÖVRANDE KUNGAR",
+        ranked_nationally: "▶ RANKAD #10 NATIONELLT ◀",
+        season_progress: "▶ SÄSONG PÅGÅR ◀",
+        
+        // Contact
+        contact_title: "KONTAKT",
+        contact_p1: "Redo att utmana mästarna? Vill du gå med i vårt lag? Skicka oss ett meddelande och bevisa ditt värde på kubbplanen!",
+        email: "E-POST",
+        instagram: "INSTAGRAM",
+        home_arena: "HEMMAARENA",
+        press_start: "▶ TRYCK START FÖR ATT BÖRJA",
+        
+        // Footer
+        designed_by: "DESIGNAD AV DR.MANGOD",
+        copyright: "© 2008-2026 CC KUBB TEAM | EST. 2008",
+        best_viewed: "BÄST VISAD I NETSCAPE NAVIGATOR 4.0 | 800x600 UPPLÖSNING",
+        
+        // Player stats
+        shot_power: "Skottstyrka",
+        accuracy_under5: "Träffsäkerhet <5m",
+        accuracy_5_7: "Träffsäkerhet 5-7m",
+        accuracy_over7: "Träffsäkerhet >7m",
+        throw_in: "Inkast",
+        total_score: "Totalpoäng"
+    }
+};
+
+window.switchLanguage = function(lang) {
+    currentLang = lang;
+    
+    // Update button states
+    document.getElementById('lang-en').classList.toggle('active', lang === 'en');
+    document.getElementById('lang-sv').classList.toggle('active', lang === 'sv');
+    
+    const t = translations[lang];
+    
+    // Update all text content
+    document.querySelector('.tagline').textContent = t.tagline;
+    document.querySelector('.marquee-content').innerHTML = `
+        <span>${t.marquee}</span>
+        <span>${t.marquee}</span>
+        <span>${t.marquee}</span>
+        <span>${t.marquee}</span>
+        <span>${t.marquee}</span>
+        <span>${t.marquee}</span>
+    `;
+    
+    // Navigation
+    const navButtons = document.querySelectorAll('nav button');
+    navButtons[0].textContent = t.nav_about;
+    navButtons[1].textContent = t.nav_team;
+    navButtons[2].textContent = t.nav_stats;
+    navButtons[3].textContent = t.nav_contact;
+    
+    // About section
+    document.querySelector('#about h2').textContent = t.about_title;
+    const aboutPs = document.querySelectorAll('#about > p');
+    aboutPs[0].textContent = t.about_p1;
+    aboutPs[1].textContent = t.about_p2;
+    
+    // Team section
+    document.querySelector('#team h2').textContent = t.team_title;
+    document.querySelector('.highscore-link p').textContent = t.highscores;
+    
+    // Update player roles
+    const roles = [t.role_anchor, t.role_allround, t.role_power, t.role_allround, 
+                   t.role_precision, t.role_sniper, t.role_allround, t.role_clutch];
+    const teamMembers = document.querySelectorAll('.team-member p:last-of-type');
+    teamMembers.forEach((member, i) => {
+        member.textContent = roles[i];
+    });
+    
+    // Stats section
+    document.querySelector('#stats h2').textContent = t.stats_title;
+    
+    // 2025 season
+    const season2025 = document.querySelector('#season-2025');
+    season2025.querySelector('p:first-child').textContent = t.tournament_results;
+    season2025.querySelectorAll('p')[1].textContent = `${t.wc_6v6}`;
+    season2025.querySelectorAll('p')[2].textContent = `${t.ec_3v3}`;
+    
+    const stats2025 = season2025.querySelectorAll('.stat-box p');
+    stats2025[0].textContent = t.games_won;
+    stats2025[2].textContent = t.win_streak;
+    stats2025[4].textContent = t.kubbs_toppled;
+    stats2025[6].textContent = t.kings_conquered;
+    season2025.querySelector('p:last-child').textContent = t.ranked_nationally;
+    
+    // 2026 season
+    const season2026 = document.querySelector('#season-2026');
+    season2026.querySelector('p:first-child').textContent = t.tournament_results;
+    season2026.querySelectorAll('p')[1].textContent = t.winner_norrtalje;
+    season2026.querySelectorAll('p')[2].textContent = `${t.wc_6v6.split(':')[0]}: ${t.upcoming}`;
+    season2026.querySelectorAll('p')[3].textContent = `${t.ec_3v3.split(':')[0]}: ${t.upcoming}`;
+    
+    const stats2026 = season2026.querySelectorAll('.stat-box p');
+    stats2026[0].textContent = t.games_won;
+    stats2026[2].textContent = t.win_streak;
+    stats2026[4].textContent = t.kubbs_toppled;
+    stats2026[6].textContent = t.kings_conquered;
+    season2026.querySelector('p:last-child').textContent = t.season_progress;
+    
+    // Contact section
+    document.querySelector('#contact h2').textContent = t.contact_title;
+    const contactPs = document.querySelectorAll('#contact p');
+    contactPs[0].textContent = t.contact_p1;
+    contactPs[1].innerHTML = `
+        ${t.email}: team@cckubb.com<br>
+        ${t.instagram}: <br>
+        ${t.home_arena}: Svandammsparken
+    `;
+    contactPs[2].innerHTML = `${t.press_start}<span class="blink">_</span>`;
+    
+    // Footer
+    const footerPs = document.querySelectorAll('footer p');
+    footerPs[0].textContent = t.designed_by;
+    footerPs[1].textContent = t.copyright;
+    footerPs[2].textContent = t.best_viewed;
+};
     </script>
 </body>
 </html>
