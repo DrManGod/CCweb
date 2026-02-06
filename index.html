@@ -1699,6 +1699,26 @@
             document.getElementById('cardTeamEC').textContent = 'Team EC: ' + player.team_ec;
             document.getElementById('cardTotal').textContent = 'Estimated player score: ' + player.kubbs10;
             
+            // Remove any existing "unknown estimation" note first
+            const existingNote = document.querySelector('.player-stats .unknown-estimation');
+            if (existingNote) {
+                existingNote.remove();
+            }
+            
+            // Add "unknown estimation" note for Peter Nordlund only
+            if (playerId === 8) {
+                const statsDiv = document.querySelector('.player-stats');
+                const unknownNote = document.createElement('p');
+                unknownNote.className = 'unknown-estimation';
+                unknownNote.style.fontSize = '9px';
+                unknownNote.style.fontStyle = 'italic';
+                unknownNote.style.color = '#888';
+                unknownNote.style.marginTop = '5px';
+                unknownNote.textContent = 'unknown estimation';
+                // Insert after the cardTotal element
+                document.getElementById('cardTotal').after(unknownNote);
+            }
+            
             // Generate pixel face for card (same as preview)
             const faceHTMLs = {
                 1: `<div class="face-pixel"></div><div class="face-pixel"></div><div class="face-pixel"></div><div class="face-pixel"></div><div class="face-pixel"></div><div class="face-pixel"></div><div class="face-pixel"></div><div class="face-pixel"></div>
